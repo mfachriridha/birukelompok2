@@ -11,6 +11,7 @@ import android.app.Activity
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.android.volley.Request
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
@@ -49,7 +50,7 @@ class ProfileFragment046 : Fragment() {
 
         val token = session.getToken() ?: return
         val url = VolleyClient046.getBaseUrl() + "profile046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, com.example.birukelompok2.models.ApiResponse::class.java)
@@ -107,7 +108,7 @@ class ProfileFragment046 : Fragment() {
         }
 
         val url = VolleyClient046.getBaseUrl() + "update_profile046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, com.example.birukelompok2.models.ApiResponse::class.java)
@@ -164,7 +165,7 @@ class ProfileFragment046 : Fragment() {
     private fun logout() {
         val token = session.getToken() ?: ""
         val url = VolleyClient046.getBaseUrl() + "logout046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             {
                 session.clearSession()
                 startActivity(Intent(requireContext(), LoginActivity046::class.java))

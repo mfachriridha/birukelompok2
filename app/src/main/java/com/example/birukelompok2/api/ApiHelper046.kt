@@ -1,9 +1,9 @@
 package com.example.birukelompok2.api
 
 import android.content.Context
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
-import java.util.HashMap
 
 object ApiHelper046 {
 
@@ -20,7 +20,7 @@ object ApiHelper046 {
         onError: (String) -> Unit
     ) {
         val url = baseUrl() + endpoint
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             Response.Listener { response -> onSuccess(response) },
             Response.ErrorListener { error ->
                 val msg = error.message ?: "Unknown error"
@@ -39,7 +39,7 @@ object ApiHelper046 {
         onError: (String) -> Unit
     ) {
         val url = baseUrl() + endpoint
-        val request = object : StringRequest(Method.GET, url,
+        val request = object : StringRequest(Request.Method.GET, url,
             Response.Listener { response -> onSuccess(response) },
             Response.ErrorListener { error ->
                 val msg = error.message ?: "Unknown error"

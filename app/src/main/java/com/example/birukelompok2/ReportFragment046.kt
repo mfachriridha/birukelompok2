@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.FragmentReport046Binding
@@ -75,7 +76,7 @@ class ReportFragment046 : Fragment() {
     private fun loadReport() {
         val token = session.getToken() ?: return
         val url = VolleyClient046.getBaseUrl() + "report046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)

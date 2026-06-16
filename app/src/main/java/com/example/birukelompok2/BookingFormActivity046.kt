@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
@@ -114,7 +115,7 @@ class BookingFormActivity046 : AppCompatActivity() {
 
         val token = session.getToken() ?: return
         val url = VolleyClient046.getBaseUrl() + "create_booking046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)

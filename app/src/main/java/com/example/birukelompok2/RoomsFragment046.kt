@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
@@ -63,7 +64,7 @@ class RoomsFragment046 : Fragment() {
     private fun loadRooms() {
         val token = session.getToken() ?: return
         val url = VolleyClient046.getBaseUrl() + "rooms046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 binding.swipeRefresh.isRefreshing = false
                 try {
@@ -156,7 +157,7 @@ class RoomsFragment046 : Fragment() {
                 .setPositiveButton("Ya") { _, _ ->
                     val token = session.getToken() ?: return@setPositiveButton
                     val url = VolleyClient046.getBaseUrl() + "delete_room046.php"
-                    val request = object : StringRequest(Method.POST, url,
+                    val request = object : StringRequest(Request.Method.POST, url,
                         { response ->
                             try {
                                 val apiResp = gson.fromJson(response, ApiResponse::class.java)

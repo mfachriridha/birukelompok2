@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.ActivityLogin046Binding
@@ -46,7 +47,7 @@ class LoginActivity046 : AppCompatActivity() {
 
     private fun login(email: String, password: String) {
         val url = VolleyClient046.getBaseUrl() + "login046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, com.example.birukelompok2.models.ApiResponse::class.java)

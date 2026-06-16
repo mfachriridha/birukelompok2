@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.FragmentBookings046Binding
@@ -57,7 +58,7 @@ class BookingsFragment046 : Fragment() {
     private fun loadBookings() {
         val token = session.getToken() ?: return
         val url = VolleyClient046.getBaseUrl() + "bookings046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 binding.swipeRefresh.isRefreshing = false
                 try {
@@ -133,7 +134,7 @@ class BookingsFragment046 : Fragment() {
         private fun updateStatus(bookingId: Int, status: String, note: String = "") {
             val token = session.getToken() ?: return
             val url = VolleyClient046.getBaseUrl() + "update_booking046.php"
-            val request = object : StringRequest(Method.POST, url,
+            val request = object : StringRequest(Request.Method.POST, url,
                 { response ->
                     try {
                         val apiResp = gson.fromJson(response, ApiResponse::class.java)

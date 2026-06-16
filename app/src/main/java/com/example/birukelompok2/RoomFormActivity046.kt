@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
@@ -111,7 +112,7 @@ class RoomFormActivity046 : AppCompatActivity() {
         if (selectedPhotoBase64 != null) params["foto_base64"] = selectedPhotoBase64!!
 
         val url = VolleyClient046.getBaseUrl() + "save_room046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.FragmentUsers046Binding
@@ -52,7 +53,7 @@ class UsersFragment046 : Fragment() {
     private fun loadUsers() {
         val token = session.getToken() ?: return
         val url = VolleyClient046.getBaseUrl() + "users046.php"
-        val request = object : StringRequest(Method.POST, url,
+        val request = object : StringRequest(Request.Method.POST, url,
             { response ->
                 binding.swipeRefresh.isRefreshing = false
                 try {
@@ -118,7 +119,7 @@ class UsersFragment046 : Fragment() {
         private fun deleteUser(userId: Int) {
             val token = session.getToken() ?: return
             val url = VolleyClient046.getBaseUrl() + "delete_user046.php"
-            val request = object : StringRequest(Method.POST, url,
+            val request = object : StringRequest(Request.Method.POST, url,
                 { response ->
                     try {
                         val apiResp = gson.fromJson(response, ApiResponse::class.java)
