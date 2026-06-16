@@ -11,9 +11,6 @@ object VolleyClient046 {
     private var requestQueue: RequestQueue? = null
     private var _baseUrl: String = ""
 
-    val baseUrl: String
-        get() = _baseUrl
-
     fun init(context: Context) {
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(context)
