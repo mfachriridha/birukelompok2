@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="biru_primary">#2563EB</color>
+    <color name="biru_secondary">#7C3AED</color>
+    <color name="biru_background">#F8FAFC</color>
+    <color name="biru_surface">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
