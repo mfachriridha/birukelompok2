@@ -58,7 +58,7 @@ class UsersFragment046 : Fragment() {
                 binding.swipeRefresh.isRefreshing = false
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)
-                    if (apiResp.success && apiResp.data != null) {
+                    if (apiResp.success && apiResp.data != null && apiResp.data.isJsonObject) {
                         val data = apiResp.data
                         val usersArray = data.getAsJsonArray("users")
                         val type = object : TypeToken<List<User>>() {}.type

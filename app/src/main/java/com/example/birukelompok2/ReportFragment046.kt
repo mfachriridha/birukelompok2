@@ -80,7 +80,7 @@ class ReportFragment046 : Fragment() {
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)
-                    if (apiResp.success && apiResp.data != null) {
+                    if (apiResp.success && apiResp.data != null && apiResp.data.isJsonObject) {
                         val data = apiResp.data
                         binding.tvTotal.text = "Total: ${data.get("total_bookings")?.asInt ?: 0}"
 

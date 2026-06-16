@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class ApiResponse(
     @SerializedName("success") val success: Boolean,
     @SerializedName("message") val message: String,
-    @SerializedName("data") val data: com.google.gson.JsonObject? = null
+    @SerializedName("data") val data: com.google.gson.JsonElement? = null
 )
 
 data class User(

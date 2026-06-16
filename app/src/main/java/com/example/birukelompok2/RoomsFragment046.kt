@@ -68,7 +68,7 @@ class RoomsFragment046 : Fragment() {
                 binding.swipeRefresh.isRefreshing = false
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)
-                    if (apiResp.success && apiResp.data != null) {
+                    if (apiResp.success && apiResp.data != null && apiResp.data.isJsonObject) {
                         val data = apiResp.data
                         val roomsArray = data.getAsJsonArray("rooms")
                         val type = object : TypeToken<List<Room>>() {}.type

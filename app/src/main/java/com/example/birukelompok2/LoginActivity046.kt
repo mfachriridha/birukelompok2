@@ -87,7 +87,7 @@ class LoginActivity046 : AppCompatActivity() {
             { response ->
                 try {
                     val apiResp = gson.fromJson(response, com.example.birukelompok2.models.ApiResponse::class.java)
-                    if (apiResp.success && apiResp.data != null) {
+                    if (apiResp.success && apiResp.data != null && apiResp.data.isJsonObject) {
                         val user = gson.fromJson(apiResp.data, User::class.java)
                         session.saveSession(user.apiToken, user)
                         navigateToMain()
