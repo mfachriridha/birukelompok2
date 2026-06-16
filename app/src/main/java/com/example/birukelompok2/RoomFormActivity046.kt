@@ -49,7 +49,7 @@ class RoomFormActivity046 : AppCompatActivity() {
                         binding.ivPhoto.setImageBitmap(bitmap)
                         binding.ivPhoto.visibility = View.VISIBLE
                         binding.tvAddPhoto.visibility = View.GONE
-                    }, 0, 0, ImageView.ScaleType.CENTER_CROP, null, { _ -> })
+                    }, 0, 0, ImageRequest.ScaleType.CENTER_CROP, null, { _ -> })
                 VolleyClient046.getRequestQueue().add(request)
             }
         }

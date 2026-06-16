@@ -50,7 +50,7 @@ class BookingFormActivity046 : AppCompatActivity() {
                 val imageUrl = VolleyClient046.getBaseUrl() + roomFotoUrl
                 val request = ImageRequest(imageUrl,
                     { bitmap -> binding.ivRoomPhoto.setImageBitmap(bitmap) },
-                    0, 0, ImageView.ScaleType.CENTER_CROP, null, { _ -> })
+                    0, 0, ImageRequest.ScaleType.CENTER_CROP, null, { _ -> })
                 VolleyClient046.getRequestQueue().add(request)
             }
         }

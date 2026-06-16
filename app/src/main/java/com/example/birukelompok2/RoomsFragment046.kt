@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.StringRequest
-import com.android.volley.toolbox.Volley
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.FragmentRooms046Binding
 import com.example.birukelompok2.databinding.ItemRoom046Binding
@@ -116,7 +115,7 @@ class RoomsFragment046 : Fragment() {
                     val request = ImageRequest(imageUrl,
                         { response ->
                             itemBinding.ivPhoto.setImageBitmap(response)
-                        }, 0, 0, ImageView.ScaleType.CENTER_CROP, null,
+                        }, 0, 0, ImageRequest.ScaleType.CENTER_CROP, null,
                         { error ->
                             // leave default background
                         })
