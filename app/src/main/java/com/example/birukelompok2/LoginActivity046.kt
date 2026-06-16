@@ -1,7 +1,11 @@
 package com.example.birukelompok2
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.widget.LinearLayout
+import android.widget.ScrollView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
@@ -19,30 +23,62 @@ class LoginActivity046 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLogin046Binding.inflate(layoutInflater)
-        setContentView(binding.root)
 
-        session = SessionManager046(this)
-        VolleyClient046.init(this)
+        try {
+            binding = ActivityLogin046Binding.inflate(layoutInflater)
+            setContentView(binding.root)
 
-        if (session.isLoggedIn()) {
-            navigateToMain()
-            return
-        }
+            session = SessionManager046(this)
+            VolleyClient046.init(this)
 
-        binding.btnLogin.setOnClickListener {
-            val email = binding.etEmail.text.toString().trim()
-            val password = binding.etPassword.text.toString().trim()
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Email dan password harus diisi", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            if (session.isLoggedIn()) {
+                navigateToMain()
+                return
             }
-            login(email, password)
-        }
 
-        binding.tvRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity046::class.java))
+            binding.btnLogin.setOnClickListener {
+                try {
+                    val email = binding.etEmail.text.toString().trim()
+                    val password = binding.etPassword.text.toString().trim()
+                    if (email.isEmpty() || password.isEmpty()) {
+                        Toast.makeText(this, "Email dan password harus diisi", Toast.LENGTH_SHORT).show()
+                        return@setOnClickListener
+                    }
+                    login(email, password)
+                } catch (e: Exception) {
+                    showError(e)
+                }
+            }
+
+            binding.tvRegister.setOnClickListener {
+                startActivity(Intent(this, RegisterActivity046::class.java))
+            }
+        } catch (e: Exception) {
+            showError(e)
         }
+    }
+
+    private fun showError(e: Exception) {
+        val scrollView = ScrollView(this)
+        val layout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(32, 64, 32, 32)
+        }
+        val title = TextView(this).apply {
+            text = "CRASH ERROR:"
+            textSize = 20f
+            setTextColor(Color.RED)
+        }
+        val message = TextView(this).apply {
+            text = e.toString() + "\n\n" + e.stackTraceToString()
+            textSize = 14f
+            setTextColor(Color.BLACK)
+            setTextIsSelectable(true)
+        }
+        layout.addView(title)
+        layout.addView(message)
+        scrollView.addView(layout)
+        setContentView(scrollView)
     }
 
     private fun login(email: String, password: String) {
@@ -59,11 +95,11 @@ class LoginActivity046 : AppCompatActivity() {
                         Toast.makeText(this, apiResp.message, Toast.LENGTH_SHORT).show()
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    showError(e)
                 }
             },
             { error ->
-                Toast.makeText(this, "Network error: ${error.message}", Toast.LENGTH_SHORT).show()
+                showError(Exception("Network error: ${error.message}", error))
             }
         ) {
             override fun getParams() = hashMapOf("email" to email, "password" to password)
