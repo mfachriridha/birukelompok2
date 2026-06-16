@@ -1,5 +1,4 @@
-# Ignore uploaded files but keep directories
 uploads/profiles/*
-!uploads/profiles/.gitkeep
 uploads/rooms/*
+!uploads/profiles/.gitkeep
 !uploads/rooms/.gitkeep
