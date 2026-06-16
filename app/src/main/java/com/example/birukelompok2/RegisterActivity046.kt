@@ -1,6 +1,5 @@
 package com.example.birukelompok2
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -8,16 +7,26 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.ActivityRegister046Binding
+import com.example.birukelompok2.utils.SessionManager046
 import com.google.gson.Gson
 
 class RegisterActivity046 : AppCompatActivity() {
     private lateinit var binding: ActivityRegister046Binding
+    private lateinit var session: SessionManager046
     private val gson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegister046Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        session = SessionManager046(this)
+
+        // Ensure VolleyClient has IP set from session
+        val savedIp = session.getServerIp()
+        if (savedIp != null) {
+            VolleyClient046.setServerIp(savedIp)
+        }
 
         binding.btnRegister.setOnClickListener {
             val name = binding.etName.text.toString().trim()
@@ -27,6 +36,11 @@ class RegisterActivity046 : AppCompatActivity() {
 
             if (name.isEmpty() || nim.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Semua field harus diisi", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (VolleyClient046.getBaseUrl().isEmpty()) {
+                Toast.makeText(this, "IP Server belum dikonfigurasi, login dulu", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

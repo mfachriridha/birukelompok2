@@ -15,6 +15,7 @@ class SessionManager046(context: Context) {
         private const val KEY_TOKEN = "api_token"
         private const val KEY_USER = "user_data"
         private const val KEY_LOGGED_IN = "is_logged_in"
+        private const val KEY_SERVER_IP = "server_ip"
     }
 
     fun saveSession(token: String, user: User) {
@@ -46,4 +47,10 @@ class SessionManager046(context: Context) {
     fun clearSession() {
         prefs.edit().clear().apply()
     }
+
+    fun saveServerIp(ip: String) {
+        prefs.edit().putString(KEY_SERVER_IP, ip).apply()
+    }
+
+    fun getServerIp(): String? = prefs.getString(KEY_SERVER_IP, null)
 }

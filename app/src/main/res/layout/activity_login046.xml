@@ -43,6 +43,24 @@
                 android:layout_marginBottom="32dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/et_server_ip_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="@color/biru_primary"
+                app:hintTextColor="@color/biru_primary">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_server_ip"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="IP Server (misal: 192.168.50.20)"
+                    android:inputType="text"
+                    android:padding="12dp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/et_email_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
