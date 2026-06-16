@@ -6,7 +6,7 @@ import com.android.volley.toolbox.Volley
 
 object VolleyClient046 {
     private var requestQueue: RequestQueue? = null
-    private var _baseUrl: String = ""
+    private const val BASE_URL = "http://192.168.50.20/biru-kelompok2/"
 
     fun init(context: Context) {
         if (requestQueue == null) {
@@ -14,13 +14,9 @@ object VolleyClient046 {
         }
     }
 
-    fun setServerIp(ip: String) {
-        _baseUrl = "http://$ip/biru-kelompok2/"
-    }
-
     fun getRequestQueue(): RequestQueue {
         return requestQueue ?: throw IllegalStateException("VolleyClient046 not initialized")
     }
 
-    fun getBaseUrl(): String = _baseUrl
+    fun getBaseUrl(): String = BASE_URL
 }

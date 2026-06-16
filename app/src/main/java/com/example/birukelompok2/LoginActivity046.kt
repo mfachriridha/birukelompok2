@@ -25,34 +25,18 @@ class LoginActivity046 : AppCompatActivity() {
         session = SessionManager046(this)
         VolleyClient046.init(this)
 
-        // Pre-fill saved IP
-        val savedIp = session.getServerIp()
-        if (savedIp != null) {
-            binding.etServerIp.setText(savedIp)
-            VolleyClient046.setServerIp(savedIp)
-        }
-
-        if (session.isLoggedIn() && savedIp != null) {
+        if (session.isLoggedIn()) {
             navigateToMain()
             return
         }
 
         binding.btnLogin.setOnClickListener {
-            val ip = binding.etServerIp.text.toString().trim()
             val email = binding.etEmail.text.toString().trim()
             val password = binding.etPassword.text.toString().trim()
-
-            if (ip.isEmpty()) {
-                Toast.makeText(this, "IP Server harus diisi", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
             if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Email dan password harus diisi", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-
-            session.saveServerIp(ip)
-            VolleyClient046.setServerIp(ip)
             login(email, password)
         }
 
