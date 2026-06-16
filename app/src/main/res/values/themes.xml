@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.BiruKelompok2" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.BiruKelompok2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/biru_primary</item>
+        <item name="colorPrimaryDark">#1D4ED8</item>
+        <item name="colorAccent">@color/biru_secondary</item>
+        <item name="android:statusBarColor">#1D4ED8</item>
+    </style>
 </resources>

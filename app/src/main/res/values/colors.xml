@@ -4,6 +4,10 @@
     <color name="biru_secondary">#7C3AED</color>
     <color name="biru_background">#F8FAFC</color>
     <color name="biru_surface">#FFFFFF</color>
+    <color name="cadet_blue">#475569</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="status_pending">#F59E0B</color>
+    <color name="status_approved">#22C55E</color>
+    <color name="status_rejected">#EF4444</color>
 </resources>
