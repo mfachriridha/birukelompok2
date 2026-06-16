@@ -5,11 +5,10 @@ import android.app.TimePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.toolbox.ImageRequest
+import com.example.birukelompok2.utils.loadImageFromUrl
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.ActivityBookingForm046Binding
@@ -49,10 +48,7 @@ class BookingFormActivity046 : AppCompatActivity() {
 
             if (!roomFotoUrl.isNullOrEmpty()) {
                 val imageUrl = VolleyClient046.getBaseUrl() + roomFotoUrl
-                val request = ImageRequest(imageUrl,
-                    { bitmap -> binding.ivRoomPhoto.setImageBitmap(bitmap) },
-                    0, 0, ImageRequest.ScaleType.CENTER_CROP, null, { _ -> })
-                VolleyClient046.getRequestQueue().add(request)
+                loadImageFromUrl(imageUrl, binding.ivRoomPhoto)
             }
         }
 

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -13,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
-import com.android.volley.toolbox.ImageRequest
 import com.android.volley.toolbox.StringRequest
+import com.example.birukelompok2.utils.loadImageFromUrl
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.FragmentRooms046Binding
 import com.example.birukelompok2.databinding.ItemRoom046Binding
@@ -113,14 +112,7 @@ class RoomsFragment046 : Fragment() {
 
                 if (room.fotoUrl.isNotEmpty()) {
                     val imageUrl = VolleyClient046.getBaseUrl() + room.fotoUrl
-                    val request = ImageRequest(imageUrl,
-                        { response ->
-                            itemBinding.ivPhoto.setImageBitmap(response)
-                        }, 0, 0, ImageRequest.ScaleType.CENTER_CROP, null,
-                        { error ->
-                            // leave default background
-                        })
-                    VolleyClient046.getRequestQueue().add(request)
+                    loadImageFromUrl(imageUrl, itemBinding.ivPhoto)
                 }
 
                 itemBinding.root.setOnClickListener {

@@ -6,11 +6,10 @@ import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Base64
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
-import com.android.volley.toolbox.ImageRequest
+import com.example.birukelompok2.utils.loadImageFromUrl
 import com.android.volley.toolbox.StringRequest
 import com.example.birukelompok2.api.VolleyClient046
 import com.example.birukelompok2.databinding.ActivityRoomForm046Binding
@@ -45,13 +44,9 @@ class RoomFormActivity046 : AppCompatActivity() {
 
             if (!existingFotoUrl.isNullOrEmpty()) {
                 val imageUrl = VolleyClient046.getBaseUrl() + existingFotoUrl
-                val request = ImageRequest(imageUrl,
-                    { bitmap ->
-                        binding.ivPhoto.setImageBitmap(bitmap)
-                        binding.ivPhoto.visibility = View.VISIBLE
-                        binding.tvAddPhoto.visibility = View.GONE
-                    }, 0, 0, ImageRequest.ScaleType.CENTER_CROP, null, { _ -> })
-                VolleyClient046.getRequestQueue().add(request)
+                loadImageFromUrl(imageUrl, binding.ivPhoto)
+                binding.ivPhoto.visibility = View.VISIBLE
+                binding.tvAddPhoto.visibility = View.GONE
             }
         }
 
