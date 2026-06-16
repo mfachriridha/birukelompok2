@@ -59,7 +59,7 @@ class UsersFragment046 : Fragment() {
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)
                     if (apiResp.success && apiResp.data != null && apiResp.data.isJsonObject) {
-                        val data = apiResp.data
+                        val data = apiResp.data.asJsonObject
                         val usersArray = data.getAsJsonArray("users")
                         val type = object : TypeToken<List<User>>() {}.type
                         val list: List<User> = gson.fromJson(usersArray, type)

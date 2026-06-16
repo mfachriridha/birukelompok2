@@ -64,7 +64,7 @@ class BookingsFragment046 : Fragment() {
                 try {
                     val apiResp = gson.fromJson(response, ApiResponse::class.java)
                     if (apiResp.success && apiResp.data != null && apiResp.data.isJsonObject) {
-                        val data = apiResp.data
+                        val data = apiResp.data.asJsonObject
                         val bookingsArray = data.getAsJsonArray("bookings")
                         val type = object : TypeToken<List<Booking>>() {}.type
                         val list: List<Booking> = gson.fromJson(bookingsArray, type)
