@@ -1,63 +1,62 @@
--- Active: 1778210369420@@127.0.0.1@3306@biru046
+-- ============================================
 -- Biru (Booking Ruangan) - Database Schema
--- Jalankan di phpMyAdmin atau MySQL CLI
+-- ============================================
 
-CREATE DATABASE IF NOT EXISTS biru046 CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE IF NOT EXISTS biru046
+CHARACTER SET utf8mb4
+COLLATE utf8mb4_unicode_ci;
+
 USE biru046;
 
-DROP TABLE IF EXISTS bookings;
-DROP TABLE IF EXISTS rooms;
-DROP TABLE IF EXISTS users;
-
-CREATE TABLE users (
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(120) NOT NULL,
-    nim VARCHAR(32) NOT NULL,
-    email VARCHAR(120) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
+    nim VARCHAR(20) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('admin', 'pengguna') NOT NULL DEFAULT 'pengguna',
-    photo VARCHAR(255) NULL,
+    role ENUM('admin', 'user') NOT NULL DEFAULT 'user',
+    foto_url VARCHAR(255) DEFAULT NULL,
+    api_token VARCHAR(64) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE rooms (
+-- Rooms table
+CREATE TABLE IF NOT EXISTS rooms (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(120) NOT NULL,
-    location VARCHAR(160) NOT NULL,
-    capacity INT NOT NULL DEFAULT 0,
-    facilities TEXT NULL,
-    description TEXT NULL,
-    photo VARCHAR(255) NULL,
-    status VARCHAR(40) NOT NULL DEFAULT 'tersedia',
+    nama VARCHAR(100) NOT NULL,
+    lokasi VARCHAR(100) NOT NULL,
+    kapasitas INT NOT NULL,
+    fasilitas TEXT,
+    deskripsi TEXT,
+    foto_url VARCHAR(255) DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-CREATE TABLE bookings (
+-- Bookings table
+CREATE TABLE IF NOT EXISTS bookings (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT NULL,
-    room_id INT NULL,
-    user_name VARCHAR(120) NOT NULL,
-    user_nim VARCHAR(32) NOT NULL,
-    room_name VARCHAR(120) NOT NULL,
-    date DATE NOT NULL,
-    start_time TIME NOT NULL,
-    end_time TIME NOT NULL,
-    purpose TEXT NOT NULL,
-    status ENUM('pending', 'approved', 'rejected', 'cancelled') NOT NULL DEFAULT 'pending',
-    admin_note TEXT NULL,
+    room_id INT NOT NULL,
+    user_id INT NOT NULL,
+    tanggal DATE NOT NULL,
+    jam_mulai TIME NOT NULL,
+    jam_selesai TIME NOT NULL,
+    keperluan TEXT NOT NULL,
+    status ENUM('pending', 'approved', 'rejected') NOT NULL DEFAULT 'pending',
+    admin_note TEXT DEFAULT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    INDEX idx_booking_room_date (room_id, date, start_time, end_time),
-    INDEX idx_booking_user (user_id),
-    CONSTRAINT fk_booking_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL,
-    CONSTRAINT fk_booking_room FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE SET NULL
-) ENGINE=InnoDB;
+    FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Admin default: Muhammad Fachri Ridha
--- Password: admin123
+-- Seed admin user (password: password)
 INSERT INTO users (name, nim, email, password, role) VALUES
-('Muhammad Fachri Ridha', '1201226046', 'admin@biru.local', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+('Admin', '0000000000', 'admin@biru.local', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
 
--- Contoh data ruangan
-INSERT INTO rooms (name, location, capacity, facilities, description, status) VALUES
-('Ruang 101', 'Gedung A Lantai 1', 35, 'Proyektor, AC, Papan tulis', 'Ruang kelas standar untuk perkuliahan.', 'tersedia'),
-('Lab Komputer', 'Gedung B Lantai 2', 30, 'PC, Proyektor, AC, Internet', 'Laboratorium komputer untuk praktikum.', 'tersedia');
+-- Seed some rooms
+INSERT INTO rooms (nama, lokasi, kapasitas, fasilitas, deskripsi) VALUES
+('Ruang A101', 'Gedung A Lantai 1', 30, 'AC, Proyektor, Whiteboard, Speaker', 'Ruangan kelas standar dengan kapasitas 30 orang, cocok untuk kuliah dan seminar kecil'),
+('Ruang A102', 'Gedung A Lantai 1', 40, 'AC, Proyektor, Whiteboard, Sound System', 'Ruangan kelas besar dengan kapasitas 40 orang'),
+('Ruang B201', 'Gedung B Lantai 2', 20, 'AC, TV 65 inch, Sofa, Karpet', 'Ruang meeting eksekutif dengan interior premium'),
+('Laboratorium Komputer', 'Gedung C Lantai 1', 25, 'AC, 25 PC, Proyektor, Whiteboard', 'Laboratorium komputer dengan spesifikasi tinggi'),
+('Aula Serbaguna', 'Gedung A Lantai 3', 100, 'AC, Proyektor, Sound System, Panggung, Lampu', 'Aula besar untuk acara besar seperti seminar, workshop, dan pentas seni');
