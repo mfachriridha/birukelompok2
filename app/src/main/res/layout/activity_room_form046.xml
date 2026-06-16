@@ -1,141 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_width="match_parent" android:layout_height="match_parent">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:id="@+id/photo_container"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="#E2E8F0"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:clickable="true"
-            android:focusable="true">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_photo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/tv_add_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+ Tambah Foto"
-                android:textColor="@color/cadet_blue"
-                android:textSize="16sp" />
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_nama_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/biru_primary"
-            app:hintTextColor="@color/biru_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_nama"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Nama Ruangan"
-                android:inputType="text"
-                android:padding="12dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_lokasi_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/biru_primary"
-            app:hintTextColor="@color/biru_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_lokasi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Lokasi"
-                android:inputType="text"
-                android:padding="12dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_kapasitas_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/biru_primary"
-            app:hintTextColor="@color/biru_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_kapasitas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Kapasitas"
-                android:inputType="number"
-                android:padding="12dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_fasilitas_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/biru_primary"
-            app:hintTextColor="@color/biru_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_fasilitas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Fasilitas (pisahkan dengan koma)"
-                android:inputType="text"
-                android:padding="12dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_deskripsi_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/biru_primary"
-            app:hintTextColor="@color/biru_primary">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_deskripsi"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Deskripsi"
-                android:inputType="textMultiLine"
-                android:minLines="3"
-                android:padding="12dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
+        android:orientation="vertical" android:padding="16dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content">
+        <EditText android:id="@+id/et_nama" android:hint="Nama Ruangan"
+            android:inputType="text" android:padding="12dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/et_lokasi" android:hint="Lokasi"
+            android:inputType="text" android:padding="12dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+        <EditText android:id="@+id/et_kapasitas" android:hint="Kapasitas"
+            android:inputType="number" android:padding="12dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+        <EditText android:id="@+id/et_fasilitas" android:hint="Fasilitas (pisah dengan koma)"
+            android:inputType="text" android:padding="12dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+        <EditText android:id="@+id/et_deskripsi" android:hint="Deskripsi"
+            android:inputType="textMultiLine" android:minLines="3" android:padding="12dp"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"/>
+        <Button android:id="@+id/btn_save" android:text="Simpan"
+            android:layout_width="match_parent" android:layout_height="56dp"
             android:layout_marginTop="24dp"
-            android:backgroundTint="@color/biru_primary"
-            android:text="Simpan"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:backgroundTint="@color/biru_primary" android:textColor="@color/white"/>
     </LinearLayout>
 </ScrollView>

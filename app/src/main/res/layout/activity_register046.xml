@@ -1,123 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="true">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="32dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Daftar Akun"
-                android:textColor="@color/biru_primary"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="32dp"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_name_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/biru_primary"
-                app:hintTextColor="@color/biru_primary">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nama Lengkap"
-                    android:inputType="textPersonName"
-                    android:padding="12dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_nim_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/biru_primary"
-                app:hintTextColor="@color/biru_primary">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_nim"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="NIM"
-                    android:inputType="number"
-                    android:padding="12dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_email_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="12dp"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/biru_primary"
-                app:hintTextColor="@color/biru_primary">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress"
-                    android:padding="12dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/et_password_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:boxBackgroundColor="@color/white"
-                app:boxStrokeColor="@color/biru_primary"
-                app:hintTextColor="@color/biru_primary"
-                app:passwordToggleEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_password"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Password"
-                    android:inputType="textPassword"
-                    android:padding="12dp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
-                android:id="@+id/btn_register"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:backgroundTint="@color/biru_primary"
-                android:text="Daftar"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Sudah punya akun? Masuk"
-                android:textColor="@color/biru_primary"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </ScrollView>
+    android:orientation="vertical" android:padding="32dp"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:gravity="center">
+    <TextView android:text="Daftar Akun" android:textSize="28sp" android:textStyle="bold"
+        android:textColor="@color/biru_primary" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:layout_marginBottom="32dp"/>
+    <EditText android:id="@+id/et_name" android:hint="Nama Lengkap"
+        android:inputType="textPersonName" android:padding="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"/>
+    <EditText android:id="@+id/et_nim" android:hint="NIM"
+        android:inputType="number" android:padding="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"/>
+    <EditText android:id="@+id/et_email" android:hint="Email"
+        android:inputType="textEmailAddress" android:padding="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"/>
+    <EditText android:id="@+id/et_password" android:hint="Password"
+        android:inputType="textPassword" android:padding="12dp"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"/>
+    <Button android:id="@+id/btn_register" android:text="Daftar"
+        android:layout_width="match_parent" android:layout_height="56dp"
+        android:backgroundTint="@color/biru_primary" android:textColor="@color/white"/>
 </LinearLayout>

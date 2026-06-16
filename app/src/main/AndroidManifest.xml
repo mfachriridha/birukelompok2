@@ -31,7 +31,7 @@
             android:name=".RegisterActivity046"
             android:theme="@style/Theme.BiruKelompok2" />
         <activity
-            android:name=".MainActivity046"
+            android:name=".RoomsActivity046"
             android:theme="@style/Theme.BiruKelompok2" />
         <activity
             android:name=".RoomFormActivity046"
